@@ -1,10 +1,10 @@
 import numpy as np
 import sys
 
+
 def put_stone(board, turn, player):
     """
     Checking if place available and putting stone there.
-
     :param board:
     :param turn:
     :param player:
@@ -84,7 +84,7 @@ def check_winner(board):
 
         if winner is not None:
             print('Winner is player {}'.format(winner))
-            sys.exit()
+            return True
 
     # For columns
     for i in range(cols_num):
@@ -93,7 +93,7 @@ def check_winner(board):
 
         if winner is not None:
             print('Winner is player {}'.format(winner))
-            sys.exit()
+            return True
 
     # For diagonals
     # get diags from left side
@@ -108,7 +108,7 @@ def check_winner(board):
 
             if winner is not None:
                 print('Winner is player {}'.format(winner))
-                sys.exit()
+                return True
 
 def print_board(board):
     """
@@ -162,10 +162,8 @@ if __name__ == '__main__':
         except:
             print('Input correct configs!!')
 
-    print('Choose num of column, where you wan to put your stone')
-
+    print('Choose num of column, where you want to put your stone')
     board_size = (rows_num, cols_num)
-    players_num = players_num
     # Creating numpy array with selected size
     board = np.zeros(board_size).astype('int64')
 
@@ -175,5 +173,8 @@ if __name__ == '__main__':
     while(True):
         for i in range(players_num):
             if board is not None:
-                check_winner(board)
-                board = player_turn(board,i)
+
+                if check_winner(board) != True:
+                    board = player_turn(board,i)
+                else:
+                    sys.exit()
