@@ -154,8 +154,8 @@ if __name__ == '__main__':
     # loop for configs
     while(True):
         try:
-            columns_num, rows_num, players_num = input_configs()
-            if columns_num <= 3 or rows_num <=3 or players_num <= 1:
+            cols_num, rows_num, players_num = input_configs()
+            if cols_num <= 3 or rows_num <=3 or players_num <= 1:
                 print('Input correct configs')
             else:
                 break
@@ -164,11 +164,11 @@ if __name__ == '__main__':
 
     print('Choose num of column, where you wan to put your stone')
 
-    board_size = (rows_num, columns_num)
+    board_size = (rows_num, cols_num)
     players_num = players_num
+    # Creating numpy array with selected size
     board = np.zeros(board_size).astype('int64')
-    rows_num = board.shape[0]
-    cols_num = board.shape[1]
+
     print_board(board)
 
     # loop for game
